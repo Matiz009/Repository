@@ -10,3 +10,9 @@ fileSystem.writeFile(
 fileSystem.readFile('package.json', 'utf-8', (err, data) => {
     console.log(data);
 });
+
+
+
+fileSystem.appendFile('soha.js', '\nconsole.log("Hello Soha");', (err) => {
+    console.log('File appended' + err);
+});
