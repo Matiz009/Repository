@@ -1,20 +1,12 @@
 const express = require('express');
+const posts = require('./posts.json');
 const app = express();
-
+const PORT = 5000;
+const server=`/api/v1`;
 app.use(express.json());
 
-const PORT = 5000;
-const SERVER='/api/v1';
-
-//get request
-
-const users = [
-    { id: 1, name: 'John Doe' },
-    { id: 2, name: 'Jane Smith' },
-    { id: 3, name: 'Alice Johnson' }
-];
-
 const html=`
+
 	<!DOCTYPE html>
 <html lang="en-US" xml:lang="en-US">
 <head>
@@ -210,7 +202,7 @@ const html=`
 
 																									
 	<form class="pkp_search" action="https://ejsit-journal.com/index.php/ejsit/search/search" method="get" role="search">
-		<input type="hidden" name="csrfToken" value="84b2043ce32d279695a686e7fd4ce33b">
+		<input type="hidden" name="csrfToken" value="64676a5cb8df90e31db6ae374c9f288d">
 				
 			<input name="query" value="" type="text" aria-label="Search Query">
 		
@@ -620,7 +612,7 @@ Reid, S. (2012). The New Software Testing Standard. In C. Dale & T. Anderson (Ed
 			.selector('#wordcloud')
 			.scale('linear')
 			.fill(d3.scale.ordinal().range([ "#953255","#AA9139", "#2F3F73" , "#257059"]))
-			.words([{"text":"Nigeria","size":16},{"text":"Artificial Intelligence","size":15},{"text":"Machine Learning","size":8},{"text":"COVID-19","size":7},{"text":"education","size":6},{"text":"Pig","size":6},{"text":"asphalt","size":6},{"text":"Digital Transformation","size":6},{"text":"Performance","size":6},{"text":"bitumen","size":5},{"text":"Religion","size":5},{"text":"social media","size":5},{"text":"Culture","size":5},{"text":"sustainability","size":5},{"text":"Communication","size":5},{"text":"Crude oil","size":4},{"text":"Public Health","size":4},{"text":"climate change","size":4},{"text":"performance","size":4},{"text":"Predictive Analytics","size":4},{"text":"Vitamin E","size":4},{"text":"Swine","size":4},{"text":"Philippines","size":4},{"text":"Artificial Intelligence (AI)","size":4},{"text":"GIS","size":4},{"text":"Maniema","size":3},{"text":"fertilizers","size":3},{"text":"Indonesia","size":3},{"text":"healthcare","size":3},{"text":"Solanum tuberosum","size":3},{"text":"Control","size":3},{"text":"benefits","size":3},{"text":"Kindu","size":3},{"text":"Employee Engagement","size":3},{"text":"Organizational Culture","size":3},{"text":"Education","size":3},{"text":"Social Media","size":3},{"text":"knowledge","size":3},{"text":"Environment","size":3},{"text":"Efficiency","size":3},{"text":"Obesity","size":3},{"text":"Africa","size":3},{"text":"Artificial Neural Network","size":3},{"text":"job satisfaction","size":3},{"text":"Globalization","size":3},{"text":"artificial intelligence","size":3},{"text":"Cellular Network","size":3},{"text":"Mobile","size":3},{"text":"degraded soil","size":3},{"text":"Pennisetum purpureum","size":3},{"text":"rhizogenesis","size":3},{"text":"Saudi Arabia","size":3},{"text":"Tocotrienols","size":3},{"text":"factors","size":3},{"text":"SVM","size":3},{"text":"Poultry","size":3},{"text":"urban design","size":3},{"text":"tourist destination","size":3},{"text":"digital marketing","size":3},{"text":"Bangladesh","size":3},{"text":"Gender","size":3},{"text":"Benin","size":3},{"text":"Vision 2030","size":3},{"text":"learning effectiveness","size":2},{"text":"Enzymes","size":2},{"text":"Cybersecurity","size":2},{"text":"soil","size":2},{"text":"design","size":2},{"text":"construction","size":2},{"text":"risk management","size":2},{"text":"Oreochromis niloticus","size":2},{"text":"blockchain","size":2},{"text":"Random Forest","size":2},{"text":"student","size":2},{"text":"deforestation","size":2},{"text":"Enterprise Architecture","size":2},{"text":"BIM","size":2},{"text":"Requirements","size":2},{"text":"Techniques","size":2},{"text":"Sustainability","size":2},{"text":"DEM","size":2},{"text":"Leib","size":2},{"text":"Blood parameters","size":2},{"text":"Rabbit","size":2},{"text":"UAV","size":2},{"text":"diarrheal","size":2},{"text":"Ontology","size":2},{"text":"ADC Sirikwa","size":2},{"text":"sustainable economic growth","size":2},{"text":"Garlic","size":2},{"text":"Generative AI","size":2},{"text":"Cloud Computing","size":2},{"text":"Artificial intelligence","size":2},{"text":"contamination","size":2},{"text":"attitude","size":2},{"text":"urbanization","size":2},{"text":"Blockchain","size":2},{"text":"Innovation","size":2},{"text":"conflict management","size":2},{"text":"Healthcare","size":2}])
+			.words([{"text":"Nigeria","size":16},{"text":"Artificial Intelligence","size":15},{"text":"Machine Learning","size":8},{"text":"COVID-19","size":7},{"text":"asphalt","size":6},{"text":"Digital Transformation","size":6},{"text":"Pig","size":6},{"text":"education","size":6},{"text":"Performance","size":6},{"text":"social media","size":5},{"text":"sustainability","size":5},{"text":"Religion","size":5},{"text":"bitumen","size":5},{"text":"GIS","size":5},{"text":"Communication","size":5},{"text":"Culture","size":5},{"text":"Public Health","size":4},{"text":"Artificial Intelligence (AI)","size":4},{"text":"performance","size":4},{"text":"Crude oil","size":4},{"text":"Swine","size":4},{"text":"climate change","size":4},{"text":"Philippines","size":4},{"text":"Vitamin E","size":4},{"text":"Predictive Analytics","size":4},{"text":"Mobile","size":3},{"text":"Obesity","size":3},{"text":"Kindu","size":3},{"text":"Education","size":3},{"text":"rhizogenesis","size":3},{"text":"degraded soil","size":3},{"text":"artificial intelligence","size":3},{"text":"Gender","size":3},{"text":"Artificial Neural Network","size":3},{"text":"fertilizers","size":3},{"text":"Control","size":3},{"text":"Efficiency","size":3},{"text":"Africa","size":3},{"text":"Organizational Culture","size":3},{"text":"Solanum tuberosum","size":3},{"text":"Indonesia","size":3},{"text":"Social Media","size":3},{"text":"Environment","size":3},{"text":"job satisfaction","size":3},{"text":"benefits","size":3},{"text":"Bangladesh","size":3},{"text":"Globalization","size":3},{"text":"Cellular Network","size":3},{"text":"knowledge","size":3},{"text":"Pennisetum purpureum","size":3},{"text":"Employee Engagement","size":3},{"text":"Maniema","size":3},{"text":"Benin","size":3},{"text":"Vision 2030","size":3},{"text":"urban design","size":3},{"text":"Poultry","size":3},{"text":"factors","size":3},{"text":"Saudi Arabia","size":3},{"text":"SVM","size":3},{"text":"Tocotrienols","size":3},{"text":"tourist destination","size":3},{"text":"Kenya","size":3},{"text":"digital marketing","size":3},{"text":"healthcare","size":3},{"text":"construction","size":2},{"text":"Blockchain","size":2},{"text":"blockchain","size":2},{"text":"Requirements","size":2},{"text":"Enterprise Architecture","size":2},{"text":"attitude","size":2},{"text":"Oreochromis niloticus","size":2},{"text":"Random Forest","size":2},{"text":"Leib","size":2},{"text":"ADC Sirikwa","size":2},{"text":"Machine learning","size":2},{"text":"risk management","size":2},{"text":"learning effectiveness","size":2},{"text":"Cloud Computing","size":2},{"text":"Techniques","size":2},{"text":"DEM","size":2},{"text":"Enzymes","size":2},{"text":"BIM","size":2},{"text":"soil","size":2},{"text":"diarrheal","size":2},{"text":"Artificial intelligence","size":2},{"text":"Ontology","size":2},{"text":"Cybersecurity","size":2},{"text":"Generative AI","size":2},{"text":"Garlic","size":2},{"text":"Blood parameters","size":2},{"text":"Innovation","size":2},{"text":"UAV","size":2},{"text":"Rabbit","size":2},{"text":"sustainable economic growth","size":2},{"text":"Sustainability","size":2},{"text":"design","size":2},{"text":"deforestation","size":2},{"text":"contamination","size":2},{"text":"Model","size":2},{"text":"GSM","size":2}])
 			.onwordclick(function(d, i) {
 				window.location = "https://ejsit-journal.com/index.php/ejsit/search?query=QUERY_SLUG".replace(/QUERY_SLUG/, encodeURIComponent('*'+d.text+'*'));
 			})
@@ -655,18 +647,31 @@ Reid, S. (2012). The New Software Testing Standard. In C. Dale & T. Anderson (Ed
 
 </body>
 </html>
-`
+`;
 
-//home endpoint
-app.get('/', (req, res) => {
+app.get(`${server}/posts`, (req, res) => {
+    res.send(posts);
+});
 
-    res.end("hi ");
+// Placeholder for future research endpoint
+app.get(`${server}/research`, (req, res) => {
+    res.send(`${html}`);
 });
-//users endpoint
-app.get(`${SERVER}/users`, (req, res) => {
-    console.log(req.locale);
-    res.json(users);
+
+//endpoint to get a specific post by ID
+app.get(`${server}/posts/:id`, (req, res) => {
+    const postId = parseInt(req.params.id);
+    const post = posts.find(p => p.id === postId);
+    res.json(post);
 });
+
+//endpoint to delete a specific post by ID
+app.delete(`${server}/posts/:id`, (req, res) => {
+    const postId = parseInt(req.params.id);
+    posts = posts.filter(p => p.id !== postId);
+    res.json({ message: `Post with id ${postId} deleted.` });
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
