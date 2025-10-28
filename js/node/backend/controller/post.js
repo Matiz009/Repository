@@ -55,4 +55,20 @@ async function deletePostById(req, res) {
         res.status(500).json({ error: 'Invalid post ID' });
     }
 }
-module.exports={ createPost, getPosts, getPostById, deletePostById };
+
+//function to delete a specific post by ID
+async function updatePostById(req, res) {
+    try {
+        const { title, content, author } = req.body;
+        const post = await Post.findById(req.params.id);
+        if (!post) return res.status(404).json({ message: 'Post not found' });
+        post.title = title || post.title;
+        post.content = content || post.content;
+        post.author = author || post.author;
+        const updatedPost = await post.save();
+        res.json(updatedPost);
+    } catch (error) {
+        res.status(500).json({ error: 'Invalid post ID' });
+    }
+}
+module.exports={ createPost, getPosts, getPostById, deletePostById,updatePostById };
