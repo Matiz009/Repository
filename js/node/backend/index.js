@@ -8,14 +8,14 @@ const app = express();
 const PORT = 5000;
 const server = `/api/v1`;
 
-// --- FIX: Apply CORS middleware here to ensure it applies to all routes below ---
+
 // This tells the browser that requests from other origins (like your frontend) are allowed.
 app.use(cors());
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// Connect MongoDB (assuming this function works)
+// Connect MongoDB
 connectToDatabase();
 
 // Create a new post
