@@ -1,7 +1,7 @@
 const express = require('express');
-const cors = require('cors'); // CORS import
+const cors = require('cors'); 
 const connectToDatabase = require('./services/connect');
-const Post = require('./model/post'); // Assuming this is needed for your other functions
+const Post = require('./model/post');
 const { createPost, getPosts, getPostById, deletePostById,updatePostById } = require('./controller/post');
 
 const app = express();

@@ -1,4 +1,5 @@
 import { Button } from 'react-bootstrap';
+import "tailwindcss";
 
 const Comment = () => {
   return (
